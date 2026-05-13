@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App — Java Console</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 3rem;
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    .emoji { font-size: 4rem; margin-bottom: 1rem; }
+    h1 { font-size: 2.2rem; color: #7dd3fc; margin-bottom: 0.5rem; }
+    .subtitle { color: #94a3b8; font-size: 1rem; margin-bottom: 2rem; }
+    .badge {
+      display: inline-block;
+      background: rgba(125, 211, 252, 0.15);
+      border: 1px solid #7dd3fc;
+      color: #7dd3fc;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin: 0.3rem;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    .feature {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    .feature h3 { color: #7dd3fc; font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .feature p { font-size: 0.82rem; color: #94a3b8; }
+    .btn {
+      display: inline-block;
+      background: #0ea5e9;
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0.5rem;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #0284c7; }
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid #0ea5e9;
+      color: #0ea5e9;
+    }
+    footer { margin-top: 2rem; font-size: 0.78rem; color: #475569; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="emoji">🌤</div>
+    <h1>Weather App</h1>
+    <p class="subtitle">Aplicación meteorológica de consola — Java · Git · AI-Assisted</p>
+
+    <div>
+      <span class="badge">Java 11+</span>
+      <span class="badge">Git CLI</span>
+      <span class="badge">AI Pair Programming</span>
+      <span class="badge">GitHub Pages</span>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <h3>🔍 Consulta de ciudades</h3>
+        <p>Base de datos con ciudades globales y estimaciones para cualquier ubicación.</p>
+      </div>
+      <div class="feature">
+        <h3>📋 Historial de sesión</h3>
+        <p>Registro completo de todas las consultas realizadas durante la ejecución.</p>
+      </div>
+      <div class="feature">
+        <h3>🌿 Flujo Git</h3>
+        <p>Proyecto gestionado con ramas <code>main</code> y <code>feature-update</code>.</p>
+      </div>
+      <div class="feature">
+        <h3>🤖 AI-Assisted</h3>
+        <p>Desarrollado con Claude (Anthropic) como asistente de pair programming.</p>
+      </div>
+    </div>
+
+    <a href="https://github.com/TU_USUARIO/weather-app" class="btn">Ver en GitHub</a>
+    <a href="README.md" class="btn secondary">Documentación</a>
+  </div>
+  <footer>Proyecto educativo — AI-Assisted Development &amp; Git Mastery</footer>
+</body>
+</html>

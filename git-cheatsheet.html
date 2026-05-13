@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<title>Git Cheat Sheet — Weather App</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;600;700;900&display=swap');
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:#0D1B2A;
+    color:#E0E8F0;
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    padding:28px;
+  }
+
+  /* ── Page layout ── */
+  .page{
+    max-width:1100px;
+    margin:0 auto;
+    background:#111E2E;
+    border:1px solid #1E3A5F;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 8px 40px rgba(0,0,0,.6);
+  }
+
+  /* ── Header ── */
+  .header{
+    background:linear-gradient(135deg,#0EA5E9 0%,#0369A1 100%);
+    padding:22px 32px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .header-left h1{font-size:1.7rem;font-weight:900;color:#fff;letter-spacing:.5px;}
+  .header-left p{font-size:.82rem;color:rgba(255,255,255,.8);margin-top:2px;}
+  .badge-list{display:flex;gap:8px;flex-wrap:wrap;}
+  .badge{
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
+    color:#fff;
+    padding:3px 10px;
+    border-radius:999px;
+    font-size:.72rem;
+    font-weight:600;
+  }
+
+  /* ── Grid ── */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+  }
+  .section{
+    border-right:1px solid #1E3A5F;
+    border-bottom:1px solid #1E3A5F;
+    padding:18px 20px 16px;
+  }
+  .section:nth-child(3n){border-right:none;}
+
+  .section-title{
+    font-size:.68rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+    margin-bottom:12px;
+    padding-bottom:6px;
+    border-bottom:2px solid;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  /* Color coding per section */
+  .s-init   .section-title{color:#10B981;border-color:#10B981;}
+  .s-stage  .section-title{color:#0EA5E9;border-color:#0EA5E9;}
+  .s-commit .section-title{color:#7DD3FC;border-color:#7DD3FC;}
+  .s-branch .section-title{color:#F59E0B;border-color:#F59E0B;}
+  .s-remote .section-title{color:#F97316;border-color:#F97316;}
+  .s-log    .section-title{color:#A78BFA;border-color:#A78BFA;}
+  .s-undo   .section-title{color:#F472B6;border-color:#F472B6;}
+  .s-merge  .section-title{color:#34D399;border-color:#34D399;}
+  .s-tips   .section-title{color:#94A3B8;border-color:#94A3B8;}
+
+  /* ── Command rows ── */
+  .cmd{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:0 12px;
+    margin-bottom:9px;
+    align-items:start;
+  }
+  code{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.75rem;
+    font-weight:600;
+    background:#0A1628;
+    border:1px solid #1E3A5F;
+    padding:2px 7px;
+    border-radius:5px;
+    white-space:nowrap;
+    color:#BAE6FD;
+  }
+  .desc{
+    font-size:.76rem;
+    color:#94A3B8;
+    line-height:1.4;
+    padding-top:2px;
+  }
+
+  /* accent dots for color per section */
+  .s-init   code{color:#6EE7B7;}
+  .s-stage  code{color:#7DD3FC;}
+  .s-commit code{color:#93C5FD;}
+  .s-branch code{color:#FCD34D;}
+  .s-remote code{color:#FDBA74;}
+  .s-log    code{color:#C4B5FD;}
+  .s-undo   code{color:#F9A8D4;}
+  .s-merge  code{color:#6EE7B7;}
+  .s-tips   code{color:#CBD5E1;}
+
+  /* ── Footer ── */
+  .footer{
+    background:#0A1525;
+    border-top:1px solid #1E3A5F;
+    padding:12px 32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:.72rem;
+    color:#475569;
+  }
+  .footer strong{color:#7DD3FC;}
+
+  @media print{
+    body{background:#fff;padding:0;}
+    .page{box-shadow:none;border:none;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>🌿 Git Cheat Sheet</h1>
+      <p>Guía de referencia rápida — Proyecto Weather App · AI-Assisted Development</p>
+    </div>
+    <div class="badge-list">
+      <span class="badge">git init</span>
+      <span class="badge">branching</span>
+      <span class="badge">merge</span>
+      <span class="badge">GitHub</span>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- 1. INICIALIZACIÓN -->
+    <div class="section s-init">
+      <div class="section-title">⚡ 1 — Inicialización</div>
+      <div class="cmd"><code>git init</code><span class="desc">Crea un repositorio Git vacío en la carpeta actual (.git/)</span></div>
+      <div class="cmd"><code>git clone &lt;url&gt;</code><span class="desc">Clona un repositorio remoto existente en local</span></div>
+      <div class="cmd"><code>git config --global user.name "X"</code><span class="desc">Configura tu nombre de autor globalmente</span></div>
+      <div class="cmd"><code>git config --global user.email "x@x"</code><span class="desc">Configura tu email de autor globalmente</span></div>
+    </div>
+
+    <!-- 2. STAGING AREA -->
+    <div class="section s-stage">
+      <div class="section-title">📂 2 — Área de Preparación (Stage)</div>
+      <div class="cmd"><code>git status</code><span class="desc">Muestra archivos sin rastrear, modificados o preparados</span></div>
+      <div class="cmd"><code>git add .</code><span class="desc">Añade todos los archivos del directorio al staging</span></div>
+      <div class="cmd"><code>git add &lt;archivo&gt;</code><span class="desc">Añade un archivo específico al staging</span></div>
+      <div class="cmd"><code>git restore --staged &lt;f&gt;</code><span class="desc">Saca un archivo del staging sin perder cambios</span></div>
+    </div>
+
+    <!-- 3. COMMITS -->
+    <div class="section s-commit">
+      <div class="section-title">💾 3 — Commits</div>
+      <div class="cmd"><code>git commit -m "msg"</code><span class="desc">Crea un commit con el mensaje indicado</span></div>
+      <div class="cmd"><code>git commit --amend</code><span class="desc">Modifica el último commit (mensaje o archivos)</span></div>
+      <div class="cmd"><code>git diff</code><span class="desc">Muestra las diferencias entre working dir y stage</span></div>
+      <div class="cmd"><code>git diff --staged</code><span class="desc">Diferencias entre stage y último commit</span></div>
+    </div>
+
+    <!-- 4. RAMAS -->
+    <div class="section s-branch">
+      <div class="section-title">🌿 4 — Ramas (Branching)</div>
+      <div class="cmd"><code>git branch</code><span class="desc">Lista todas las ramas locales (asterisco = activa)</span></div>
+      <div class="cmd"><code>git branch &lt;nombre&gt;</code><span class="desc">Crea una nueva rama sin cambiar a ella</span></div>
+      <div class="cmd"><code>git checkout -b &lt;nombre&gt;</code><span class="desc">Crea una rama Y cambia a ella en un solo paso</span></div>
+      <div class="cmd"><code>git checkout &lt;nombre&gt;</code><span class="desc">Cambia a una rama existente</span></div>
+      <div class="cmd"><code>git branch -d &lt;nombre&gt;</code><span class="desc">Elimina una rama ya mergeada</span></div>
+    </div>
+
+    <!-- 5. MERGE -->
+    <div class="section s-merge">
+      <div class="section-title">🔀 5 — Fusión (Merge)</div>
+      <div class="cmd"><code>git merge &lt;rama&gt;</code><span class="desc">Fusiona la rama indicada en la rama actual</span></div>
+      <div class="cmd"><code>git merge --no-ff &lt;rama&gt;</code><span class="desc">Fuerza un merge commit incluso si es fast-forward</span></div>
+      <div class="cmd"><code>git mergetool</code><span class="desc">Abre la herramienta para resolver conflictos</span></div>
+      <div class="cmd"><code>git merge --abort</code><span class="desc">Cancela un merge en curso con conflictos</span></div>
+    </div>
+
+    <!-- 6. REMOTO -->
+    <div class="section s-remote">
+      <div class="section-title">☁️ 6 — Repositorio Remoto</div>
+      <div class="cmd"><code>git remote add origin &lt;url&gt;</code><span class="desc">Vincula el repo local con un remoto en GitHub</span></div>
+      <div class="cmd"><code>git remote -v</code><span class="desc">Lista los remotos configurados y sus URLs</span></div>
+      <div class="cmd"><code>git push -u origin main</code><span class="desc">Sube la rama main al remoto (primera vez)</span></div>
+      <div class="cmd"><code>git push</code><span class="desc">Sube los cambios al remoto (veces siguientes)</span></div>
+      <div class="cmd"><code>git pull</code><span class="desc">Descarga y fusiona cambios del remoto</span></div>
+      <div class="cmd"><code>git fetch</code><span class="desc">Descarga cambios sin fusionar (más seguro)</span></div>
+    </div>
+
+    <!-- 7. HISTORIAL -->
+    <div class="section s-log">
+      <div class="section-title">🔍 7 — Historial (Log)</div>
+      <div class="cmd"><code>git log</code><span class="desc">Muestra el historial completo de commits</span></div>
+      <div class="cmd"><code>git log --oneline</code><span class="desc">Historial resumido: hash corto + mensaje</span></div>
+      <div class="cmd"><code>git log --oneline --graph</code><span class="desc">Historial con árbol visual de ramas</span></div>
+      <div class="cmd"><code>git show &lt;hash&gt;</code><span class="desc">Muestra los cambios de un commit concreto</span></div>
+    </div>
+
+    <!-- 8. DESHACER -->
+    <div class="section s-undo">
+      <div class="section-title">↩️ 8 — Deshacer Cambios</div>
+      <div class="cmd"><code>git restore &lt;archivo&gt;</code><span class="desc">Descarta cambios no preparados en un archivo</span></div>
+      <div class="cmd"><code>git reset HEAD~1</code><span class="desc">Deshace el último commit manteniendo los cambios</span></div>
+      <div class="cmd"><code>git reset --hard HEAD~1</code><span class="desc">Deshace el último commit y BORRA los cambios</span></div>
+      <div class="cmd"><code>git revert &lt;hash&gt;</code><span class="desc">Crea un commit inverso (seguro para compartido)</span></div>
+    </div>
+
+    <!-- 9. TIPS -->
+    <div class="section s-tips">
+      <div class="section-title">💡 9 — Tips Esenciales</div>
+      <div class="cmd"><code>.gitignore</code><span class="desc">Archivo con patrones de rutas a ignorar (ej. /target, *.class)</span></div>
+      <div class="cmd"><code>git stash</code><span class="desc">Guarda cambios temporalmente sin hacer commit</span></div>
+      <div class="cmd"><code>git stash pop</code><span class="desc">Recupera los cambios guardados con stash</span></div>
+      <div class="cmd"><code>git tag v1.0</code><span class="desc">Etiqueta un commit como versión (útil para releases)</span></div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>🌿 <strong>Flujo del proyecto:</strong> git init → add → commit → branch feature-update → merge → push origin main</span>
+    <span>Weather App · <strong>Java + Git CLI + GitHub Pages</strong></span>
+  </div>
+
+</div>
+</body>
+</html>
